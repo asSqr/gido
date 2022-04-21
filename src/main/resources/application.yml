@@ -3,8 +3,8 @@
 #-------------------------------------------------------------
 dbcp2.jdbc:
   driver-class-name: com.mysql.cj.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/petdb?useUnicode=true&characterEncoding=utf8&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=JST&connectionTimeZone=SERVER
-  username: root
+  url: jdbc:mysql://localhost:3306/gidodb?useUnicode=true&characterEncoding=utf8&connectionTimeZone=SERVER
+  username: app-user
   password: password
   initial-size: 1
   max-idle: 3
@@ -14,7 +14,7 @@ dbcp2.jdbc:
 # MyBatis 設定
 #-------------------------------------------------------------
 mybatis:
-  mapper-locations: classpath:com/assqr/gido/repository/mybatis/*.yml
+  mapper-locations: classpath:com/assqr/gido/repository/mybatis/*.xml
 
 #-------------------------------------------------------------
 # ログ設定 (SQL 発行周りをデバッグログで見てみる)
@@ -28,8 +28,8 @@ logging.level:
 #-------------------------------------------------------------
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/petdb?useUnicode=true&characterEncoding=utf8&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=JST&connectionTimeZone=SERVER
-    username: root
+    url: jdbc:mysql://localhost:3306/gidodb?useUnicode=true&characterEncoding=utf8&connectionTimeZone=SERVER
+    username: app-user
     password: password
     driverClassName: com.mysql.cj.jdbc.Driver
     initialization-mode: always

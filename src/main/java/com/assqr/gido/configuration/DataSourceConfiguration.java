@@ -32,6 +32,7 @@ public class DataSourceConfiguration {
         dataSource.setDriverClassName(this.properties.getDriverClassName());
 
         // 接続情報
+        dataSource.setUrl(this.properties.getUrl());
         dataSource.setUsername(this.properties.getUsername());
         dataSource.setPassword(this.properties.getPassword());
 

@@ -1,5 +1,5 @@
 #-------------------------------------------------------------
-# JDBC ???? (DataSourceConfigurationProperties ?????)
+# JDBC 接続設定 (DataSourceConfigurationProperties で読み込む)
 #-------------------------------------------------------------
 dbcp2.jdbc:
   driver-class-name: com.mysql.cj.jdbc.Driver
@@ -11,20 +11,20 @@ dbcp2.jdbc:
   min-idle: 1
 
 #-------------------------------------------------------------
-# MyBatis ??
+# MyBatis 設定
 #-------------------------------------------------------------
 mybatis:
   mapper-locations: classpath:com/assqr/gido/repository/mybatis/*.yml
 
 #-------------------------------------------------------------
-# ???? (SQL ????????????????)
+# ログ設定 (SQL 発行周りをデバッグログで見てみる)
 #-------------------------------------------------------------
 logging.level:
   com.assqr.gido.repository: debug
   org.springframework.jdbc.datasource.DataSourceTransactionManager: debug
 
 #-------------------------------------------------------------
-# ?????????????????????????
+# アプリケーションを起動するたびにテーブルを更新する
 #-------------------------------------------------------------
 spring:
   datasource:

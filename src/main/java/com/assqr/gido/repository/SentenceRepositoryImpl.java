@@ -28,9 +28,9 @@ public class SentenceRepositoryImpl implements SentenceRepository {
         this.sqlSessionTemplate = sqlSessionTemplate;
     }
 
-    public List<Sentence> findAll() {
+    public List<Sentence> find(String text, String author) {
         return this.sqlSessionTemplate.getMapper(SentenceMapper.class)
-                .findAll();
+                .find(text, author);
     }
 
 }

@@ -9,18 +9,12 @@ import java.util.List;
 public interface SentenceRepository {
 
     /**
-     * 全文章取得
-     *
-     * @return 全文章のリスト
-     */
-    List<Sentence> findAll();
-
-    /**
      * text を含む文章を取得
      *
      * @param text 検索文字列
-     * @return 検索文字列を含む文章のリスト
+     * @param author 著者
+     * @return 指定した著者の検索文字列を含む文章のリスト
      */
-    List<Sentence> findList(String text);
+    List<Sentence> find(String text, String author);
 
 }

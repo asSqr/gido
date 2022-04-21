@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.assqr.gido.repository.mybatis.SentenceMapper">
+
+    <!-- Sentence クラスとテーブルをマッピングする -->
+    <resultMap id="Sentence" type="com.assqr.gido.domain.Sentence">
+        <id property="id" column="id" />
+        <result property="author" column="author" />
+        <result property="text" column="text" />
+    </resultMap>
+
+    <!-- キーワード検索 (著者指定) -->
+    <select id="find" resultMap="Sentence">
+        SELECT * FROM M_SENTENCE
+        WHERE
+            TEXT LIKE CONCAT('%', COALESCE(#{text}, ''), '%')
+        <if test="author != null">
+            AND AUTHOR = #{author}
+        </if>
+    </select>
+
+</mapper>

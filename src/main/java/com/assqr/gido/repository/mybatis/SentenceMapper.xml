@@ -21,4 +21,46 @@
         </if>
     </select>
 
+    <select id="get" resultMap="Sentence">
+        SELECT * FROM M_SENTENCE
+        WHERE ID = #{sentenceId}
+    </select>
+
+    <select id="lock" resultMap="Sentence">
+        SELECT * FROM M_SENTENCE
+        WHERE ID = #{sentenceId}
+        FOR UPDATE
+    </select>
+
+    <insert id="add"
+            parameterType="com.assqr.gido.domain.Sentence"
+            keyProperty="id">
+        <selectKey keyProperty="id" resultType="string">
+            SELECT MAX(ID)+1 FROM M_SENTENCE
+        </selectKey>
+
+        INSERT INTO M_SENTENCE (ID, AUTHOR, TEXT)
+        VALUES (#{id}, #{author}, #{text})
+    </insert>
+
+    <update id="set"
+            parameterType="com.assqr.gido.domain.Sentence">
+        UPDATE M_SENTENCE
+        <set>
+            <if test="author != null">
+                AUTHOR = #{author},
+            </if>
+            <if test="text != null">
+                TEXT = #{text},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="remove"
+            parameterType="com.assqr.gido.domain.Sentence">
+        DELETE FROM M_SENTENCE
+        WHERE id = #{id}
+    </delete>
+
 </mapper>

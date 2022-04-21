@@ -11,3 +11,5 @@ docker run -p 3306:3306 --name mysql_80 -e MYSQL_ROOT_PASSWORD=password -d mysql
 docker exec -it mysql_80 mysql -u root -p
 ```
 パスワードは `password`
+
+その後，`src/resources/init.sql` を実行．

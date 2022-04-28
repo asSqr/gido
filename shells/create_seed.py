@@ -23,14 +23,19 @@ def enumerate_files(directory: str) -> List[str]:
 def format_insert_sqls(authors: List[str], texts: List[str]) -> str:
     ret_str = ''
     used_text = {}
+    count = 0
     
     for author, text in zip(authors, texts):
+        if count >= MAX_SENTENCES:
+            break
+        
         if text[0:140] in used_text:
             continue
         
         uuid = str(uuid4())
         ret_str += f"INSERT INTO M_SENTENCE VALUES({uuid!r}, {author!r}, {text!r});\n"
         used_text[text[0:140]] = True
+        count += 1
     
     return ret_str
 
@@ -44,9 +49,9 @@ for file in enumerate_files(DATAS_PATH):
     def truncate_author(author: str) -> str:
         return author.split('\n')[0]
     
-    authors = list(json_dict["Text"])[0:MAX_SENTENCES]
+    authors = list(json_dict["Text"])
     authors = list(map(truncate_author, authors))
     
-    texts = list(json_dict["Embedded_text"])[0:MAX_SENTENCES]
+    texts = list(json_dict["Embedded_text"])
     
     print(format_insert_sqls(authors, texts))

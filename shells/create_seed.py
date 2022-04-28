@@ -3,8 +3,10 @@ from os import walk, path
 from typing import List
 from uuid import uuid4
 
+
 DATAS_PATH = './datas'
 GIDO_SUFFIX = 'gido'
+MAX_SENTENCES = 1000
 
 
 def enumerate_files(directory: str) -> List[str]:
@@ -18,11 +20,11 @@ def enumerate_files(directory: str) -> List[str]:
     return file_list
 
 
-def format_insert_sqls(author: str, texts: List[str]) -> str:
+def format_insert_sqls(authors: List[str], texts: List[str]) -> str:
     ret_str = ''
     used_text = {}
     
-    for text in texts:
+    for author, text in zip(authors, texts):
         if text[0:140] in used_text:
             continue
         
@@ -39,8 +41,12 @@ for file in enumerate_files(DATAS_PATH):
     
     json_dict = pd.read_json(file)
     
-    author = json_dict["Text"][0]
+    def truncate_author(author: str) -> str:
+        return author.split('\n')[0]
     
-    texts = list(set(json_dict["Embedded_text"]))[0:1000]
+    authors = list(json_dict["Text"])[0:MAX_SENTENCES]
+    authors = list(map(truncate_author, authors))
     
-    print(format_insert_sqls(author, texts))
+    texts = list(json_dict["Embedded_text"])[0:MAX_SENTENCES]
+    
+    print(format_insert_sqls(authors, texts))

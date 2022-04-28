@@ -4,6 +4,18 @@ from typing import List
 from uuid import uuid4
 
 DATAS_PATH = './datas'
+GIDO_SUFFIX = 'gido'
+
+
+def enumerate_files(directory: str) -> List[str]:
+    file_list = []
+
+    for (_, _, filenames) in walk(directory):
+        dir_joined_list = [path.join(directory, filename) for filename in filenames]
+        file_list.extend(dir_joined_list)
+        break
+    
+    return file_list
 
 
 def format_insert_sqls(author: str, texts: List[str]) -> str:
@@ -21,18 +33,11 @@ def format_insert_sqls(author: str, texts: List[str]) -> str:
     return ret_str
 
 
-file_list = []
-
-for (dirpath, dirnames, filenames) in walk(DATAS_PATH):
-    file_list.extend(filenames)
-    
-    break
-
-for file in file_list:
-    if 'gido' not in file:
+for file in enumerate_files(DATAS_PATH):
+    if GIDO_SUFFIX not in file:
         continue
     
-    json_dict = pd.read_json(path.join(DATAS_PATH, file))
+    json_dict = pd.read_json(file)
     
     author = json_dict["Text"][0]
     

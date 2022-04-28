@@ -29,10 +29,13 @@ for (dirpath, dirnames, filenames) in walk(DATAS_PATH):
     break
 
 for file in file_list:
+    if 'gido' not in file:
+        continue
+    
     json_dict = pd.read_json(path.join(DATAS_PATH, file))
     
     author = json_dict["Text"][0]
     
-    texts = list(set(json_dict["Embedded_text"]))
+    texts = list(set(json_dict["Embedded_text"]))[0:1000]
     
     print(format_insert_sqls(author, texts))

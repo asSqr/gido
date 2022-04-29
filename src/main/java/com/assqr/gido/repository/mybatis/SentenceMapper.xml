@@ -17,7 +17,7 @@
         WHERE
             TEXT LIKE CONCAT('%', COALESCE(#{text}, ''), '%')
         <if test="author != null">
-            AND AUTHOR = #{author}
+            AND AUTHOR LIKE CONCAT('%', COALESCE(#{author}, ''), '%')
         </if>
     </select>
 

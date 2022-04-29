@@ -37,12 +37,7 @@ public class SentenceRepositoryImplDbUnitTests {
         @Test
         public void testFindAll() throws Exception {
             List<Sentence> sentences = target.find(null, null);
-            assertEquals(5, sentences.size());
-            assertEquals("1", sentences.get(0).getId());
-            assertEquals("2", sentences.get(1).getId());
-            assertEquals("3", sentences.get(2).getId());
-            assertEquals("4", sentences.get(3).getId());
-            assertEquals("5", sentences.get(4).getId());
+            assertEquals(1000, sentences.size());
         }
 
         /**
@@ -50,12 +45,13 @@ public class SentenceRepositoryImplDbUnitTests {
          */
         @Test
         public void testFindFilteredByTextAndAuthor() throws Exception {
-            List<Sentence> sentences = target.find("優しい", "中島義道");
-            assertEquals(1, sentences.size());
-            assertEquals("1", sentences.get(0).getId());
-            assertEquals("中島義道", sentences.get(0).getAuthor());
-            assertEquals("「優しい」人とは、――他人に優しくしようと全力を尽くそうとする人ではなくて――優しくない他人によって自分が傷つくことを全身で恐れる人であり、むしろこちらを第一原理とする人なのである。『うるさい日本の私』\\n18\\n60",
+            List<Sentence> sentences = target.find("誇り高く弱い若者たちよ!", "中島義道");
+            assertEquals(2, sentences.size());
+            assertEquals("827e2ab2-bd2b-4277-b217-f48a89c1d95a", sentences.get(0).getId());
+            assertEquals("中島義道 bot", sentences.get(0).getAuthor());
+            assertEquals("誇り高く弱い若者たちよ!ニーチェを読もう。そして、思いっきり自分と重ね合わせて、自分のバイブルにしよう。そして、世の中の「畜群」どもをすべて笑い飛ばそう。そうすれば、あと少しは自分をごまかせるかも知れないのだから。『善人ほど悪い奴はいない』",
                     sentences.get(0).getText());
+            assertEquals("c1be8661-4581-4d9a-85b6-4b876930f920", sentences.get(1).getId());
         }
 
         /**
@@ -63,11 +59,11 @@ public class SentenceRepositoryImplDbUnitTests {
          */
         @Test
         public void testGet() throws Exception {
-            Sentence sentence = target.findOne("1");
+            Sentence sentence = target.findOne("827e2ab2-bd2b-4277-b217-f48a89c1d95a");
             assertNotNull(sentence);
-            assertEquals("1", sentence.getId());
-            assertEquals("中島義道", sentence.getAuthor());
-            assertEquals("「優しい」人とは、――他人に優しくしようと全力を尽くそうとする人ではなくて――優しくない他人によって自分が傷つくことを全身で恐れる人であり、むしろこちらを第一原理とする人なのである。『うるさい日本の私』\\n18\\n60",
+            assertEquals("827e2ab2-bd2b-4277-b217-f48a89c1d95a", sentence.getId());
+            assertEquals("中島義道 bot", sentence.getAuthor());
+            assertEquals("誇り高く弱い若者たちよ!ニーチェを読もう。そして、思いっきり自分と重ね合わせて、自分のバイブルにしよう。そして、世の中の「畜群」どもをすべて笑い飛ばそう。そうすれば、あと少しは自分をごまかせるかも知れないのだから。『善人ほど悪い奴はいない』",
                     sentence.getText());
         }
 
@@ -84,11 +80,11 @@ public class SentenceRepositoryImplDbUnitTests {
          */
         @Test
         public void testLock() throws Exception {
-            Sentence sentence = target.lock("1");
+            Sentence sentence = target.lock("827e2ab2-bd2b-4277-b217-f48a89c1d95a");
             assertNotNull(sentence);
-            assertEquals("1", sentence.getId());
-            assertEquals("中島義道", sentence.getAuthor());
-            assertEquals("「優しい」人とは、――他人に優しくしようと全力を尽くそうとする人ではなくて――優しくない他人によって自分が傷つくことを全身で恐れる人であり、むしろこちらを第一原理とする人なのである。『うるさい日本の私』\\n18\\n60",
+            assertEquals("827e2ab2-bd2b-4277-b217-f48a89c1d95a", sentence.getId());
+            assertEquals("中島義道 bot", sentence.getAuthor());
+            assertEquals("誇り高く弱い若者たちよ!ニーチェを読もう。そして、思いっきり自分と重ね合わせて、自分のバイブルにしよう。そして、世の中の「畜群」どもをすべて笑い飛ばそう。そうすれば、あと少しは自分をごまかせるかも知れないのだから。『善人ほど悪い奴はいない』",
                     sentence.getText());
         }
 

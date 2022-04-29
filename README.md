@@ -13,3 +13,9 @@ docker exec -it mysql_80 mysql -u root -p
 パスワードは `password`
 
 その後，`src/resources/init.sql` を実行．
+
+# Seed 作成
+```
+cd ./shells
+python ./create_seed.py > ../src/main/resources/data.sql
+```

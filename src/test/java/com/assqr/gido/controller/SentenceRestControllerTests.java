@@ -51,15 +51,15 @@ public class SentenceRestControllerTests {
     @Test
     public void testFind() throws Exception {
         SentenceList findResult = new SentenceList();
-        Mockito.doReturn(findResult).when(sentenceService).find("優しさ", "中島義道");
+        Mockito.doReturn(findResult).when(sentenceService).find("誇り高く弱い若者たちよ!", "中島義道");
 
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
                 .get("/api/v1/sentences")
-                .param("text", "優しさ").param("author", "中島義道"))
+                .param("text", "誇り高く弱い若者たちよ!").param("author", "中島義道"))
                 .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 
         assertEquals(UnitTestUtil.entity2JsonText(findResult), result.getResponse().getContentAsString());
-        Mockito.verify(sentenceService, Mockito.times(1)).find("優しさ", "中島義道");
+        Mockito.verify(sentenceService, Mockito.times(1)).find("誇り高く弱い若者たちよ!", "中島義道");
     }
 
     /**

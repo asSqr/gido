@@ -24,7 +24,7 @@ jobs:
         cache: maven
     - name: Grant execute permission for mvnw
       run: chmod +x mvnw
-    - name: Lint
+    - name: Test
       run: ./mvnw test
     - name: Upload coverage
       uses: codecov/codecov-action@v1

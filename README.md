@@ -1,5 +1,7 @@
 # gido
-API for gido-like books
+[![codecov](https://codecov.io/gh/asSqr/gido/branch/master/graph/badge.svg?token=30zXEaG8oz)](https://codecov.io/gh/asSqr/gido) 
+
+<h1 align="center">API for gido-like books</h1>
 
 # MySQL 起動
 ```

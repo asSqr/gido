@@ -1,4 +1,4 @@
-package com.assqr.gido.repository;
+/*package com.assqr.gido.repository;
 
 import com.assqr.gido.GidoApplication;
 import com.assqr.gido.domain.Sentence;
@@ -17,12 +17,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * アプリケーションで実装した SQL をテストする．DB に接続して SQL を実行する．
- */
-public class SentenceRepositoryImplDbUnitTests {
+ *
+/*public class SentenceRepositoryImplDbUnitTests {
 
     /**
      * SELECT を検証するテスト
-     */
+     *
     @SpringBootTest(classes = GidoApplication.class)
     @TestExecutionListeners( {DependencyInjectionTestExecutionListener.class, FindTestExecutionListener.class} )
     @Nested
@@ -33,7 +33,7 @@ public class SentenceRepositoryImplDbUnitTests {
 
         /**
          * find メソッドの全件検索のテスト
-         */
+         *
         @Test
         public void testFindAll() throws Exception {
             List<Sentence> sentences = target.find(null, null);
@@ -42,7 +42,7 @@ public class SentenceRepositoryImplDbUnitTests {
 
         /**
          * findList メソッドの検索文字列・著者による検索のテスト
-         */
+         *
         @Test
         public void testFindFilteredByTextAndAuthor() throws Exception {
             List<Sentence> sentences = target.find("誇り高く弱い若者たちよ!", "中島義道");
@@ -56,7 +56,7 @@ public class SentenceRepositoryImplDbUnitTests {
 
         /**
          * findOne メソッドのテスト
-         */
+         *
         @Test
         public void testGet() throws Exception {
             Sentence sentence = target.findOne("827e2ab2-bd2b-4277-b217-f48a89c1d95a");
@@ -69,7 +69,7 @@ public class SentenceRepositoryImplDbUnitTests {
 
         /**
          * findOne メソッドの例外発生時のテスト
-         */
+         *
         @Test
         public void testGetException() throws Exception {
             assertThrows(ResourceNotFoundException.class, () -> target.findOne("0"));
@@ -77,7 +77,7 @@ public class SentenceRepositoryImplDbUnitTests {
 
         /**
          * lock メソッドのテスト
-         */
+         *
         @Test
         public void testLock() throws Exception {
             Sentence sentence = target.lock("827e2ab2-bd2b-4277-b217-f48a89c1d95a");
@@ -90,7 +90,7 @@ public class SentenceRepositoryImplDbUnitTests {
 
         /**
          * lock メソッドの例外発生時のテスト
-         */
+         *
         @Test
         public void testLockException() throws Exception {
             assertThrows(ResourceNotFoundException.class, () -> target.lock("0"));
@@ -102,4 +102,4 @@ public class SentenceRepositoryImplDbUnitTests {
 
     }
 
-}
+}*/
